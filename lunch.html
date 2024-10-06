@@ -8,6 +8,7 @@
 <body>
 
     <h2>Kousik Kuchipudi orders a lunch</h2>
+
     <form>
         <label><input type="checkbox" id="drink" value="drink"> Drink</label><br>
         <label><input type="checkbox" id="side" value="side"> Side</label><br>
@@ -17,6 +18,18 @@
     </form>
 
     <p id="lunch_result">Your lunch details will be displayed here</p>
+
+    <form>
+        <label for="property_name">Enter property:</label>
+        <input type="text" id="property_name" value="entree"><br>
+
+        <label for="property_value">Set it to:</label>
+        <input type="text" id="property_value"><br>
+
+        <input type="button" onclick="updateLunch()" value="Update the lunch">
+    </form>
+
+    <p id="updated_lunch_result">Your updated lunch details will be displayed here</p>
 
     <script>
         let my_lunch = {};
@@ -32,6 +45,16 @@
                 Drink: ${my_lunch.drink ? "Yes" : "No"}<br>
                 Side: ${my_lunch.side ? "Yes" : "No"}<br>
                 Eat in: ${my_lunch.in ? "Yes" : "No"}`;
+        }
+
+        function updateLunch() {
+            const property = document.getElementById("property_name").value;
+            const value = document.getElementById("property_value").value;
+
+            my_lunch[property] = value;
+
+            document.getElementById("updated_lunch_result").innerHTML = `Updated Lunch Order: <br>` +
+                JSON.stringify(my_lunch, null, 2).replace(/\n/g, '<br>');
         }
     </script>
 
