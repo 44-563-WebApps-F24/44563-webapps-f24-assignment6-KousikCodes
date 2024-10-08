@@ -1,29 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Guesser</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
 
-    <h2>Guess the Color - Kousik Kuchipudi</h2>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Guess the Color - Kousik Kuchipudi</h2>
 
-    <form>
-        <label for="secret_color">Guess the color</label>
-        <input type="password" id="secret_color" value="Red"><br>
+        <form class="mb-4">
+            <div class="form-group">
+                <label for="secret_color">Guess the color</label>
+                <input type="password" class="form-control" id="secret_color" value="Red">
+            </div>
 
-        <label for="guess_color">Enter a guess</label>
-        <input type="text" id="guess_color"><br>
+            <div class="form-group">
+                <label for="guess_color">Enter a guess</label>
+                <input type="text" class="form-control" id="guess_color">
+            </div>
 
-        <input type="button" onclick="processColor()" value="Check the color">
-    </form>
+            <button type="button" class="btn btn-primary btn-block" onclick="processColor()">Check the color</button>
+        </form>
 
-    <p id="result">Attempts: 0 | Wrong: 0</p>
+        <p id="result" class="text-center">Attempts: 0 | Wrong: 0</p>
 
-    <div>
-        <img id="plantImage" src="plant1.jpg" width="200" height="200" onclick="nextImage()">
+        <div class="text-center">
+            <img id="plantImage" src="plant1.jpg" class="img-fluid rounded" width="200" height="200" onclick="nextImage()" alt="Plant Image">
+        </div>
     </div>
+
 
     <script>
         let attempts = 0;
@@ -36,20 +49,17 @@
             attempts++;
             if (guessedColor.toLowerCase() !== secretColor.toLowerCase()) {
                 wrong++;
-                alert("That was not it");
+                $('#errorModal').modal('show'); // Show error modal
             } else {
-                alert("You got it!");
+                $('#successModal').modal('show'); // Show success modal
             }
 
             document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong: ${wrong}`;
         }
 
-
         let showing = 1;
 
         function nextImage() {
-            console.log("Current showing:", showing); 
-
             switch (showing) {
                 case 1:
                     document.getElementById("plantImage").src = "plant2.jpg";
@@ -66,6 +76,45 @@
             }
         }
     </script>
+
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="errorModalLabel">Incorrect Guess</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    That was not it! Try again.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">Correct Guess</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You got it right!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
