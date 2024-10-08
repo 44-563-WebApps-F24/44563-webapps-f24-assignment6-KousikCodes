@@ -1,42 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Game</title>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
 
-    <h2>Kousik Kuchipudi figures out</h2>
-    <form>
-        <label for="first_value">Enter a number</label>
-        <input type="number" id="first_value" value="2"> <br>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Kousik Kuchipudi figures out</h2>
 
-        <label for="second_value">Enter another number</label>
-        <input type="number" id="second_value" value="12"> <br>
+        <form class="mb-4">
+            <div class="form-group">
+                <label for="first_value">Enter a number</label>
+                <input type="number" class="form-control" id="first_value" value="2">
+            </div>
 
-        <input type="button" onclick="powerSum()" value="Compute">
-    </form>
-    <p id="result">The result will be displayed here</p>
-    <form>
-        <label><input type="radio" name="operation" value="max" onclick="processRadio()"> Max </label><br>
-        <label><input type="radio" name="operation" value="min" onclick="processRadio()"> Min </label><br>
-        <label><input type="radio" name="operation" value="avg" onclick="processRadio()"> Average </label><br>
-        <label><input type="radio" name="operation" value="geo" onclick="processRadio()"> Geometric Mean </label><br>
-    </form>
+            <div class="form-group">
+                <label for="second_value">Enter another number</label>
+                <input type="number" class="form-control" id="second_value" value="12">
+            </div>
 
-    <p id="radio_result">The computed result will be displayed here</p>
+            <button type="button" class="btn btn-primary btn-block" onclick="powerSum()">Compute</button>
+        </form>
+
+        <p id="result" class="text-center font-weight-bold">The result will be displayed here</p>
+
+        <form>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="operation" value="max" onclick="processRadio()">
+                <label class="form-check-label" for="max">Max</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="operation" value="min" onclick="processRadio()">
+                <label class="form-check-label" for="min">Min</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="operation" value="avg" onclick="processRadio()">
+                <label class="form-check-label" for="avg">Average</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="operation" value="geo" onclick="processRadio()">
+                <label class="form-check-label" for="geo">Geometric Mean</label>
+            </div>
+        </form>
+
+        <p id="radio_result" class="text-center font-weight-bold">The computed result will be displayed here</p>
+    </div>
+
     <script>
         function powerSum() {
             let first = parseInt(document.getElementById("first_value").value);
             let second = parseInt(document.getElementById("second_value").value);
             let sum = 0;
             for (let i = 0; i < first; i++) {
-                sum += Math.pow(second, i); 
+                sum += Math.pow(second, i);
             }
             document.getElementById("result").innerHTML = `Sum of ${first} powers with base ${second} is ${sum}`;
         }
+
         function processRadio() {
             let first = parseFloat(document.getElementById("first_value").value);
             let second = parseFloat(document.getElementById("second_value").value);
@@ -54,12 +82,13 @@
                     result = (first + second) / 2;
                     break;
                 case "geo":
-                    result = Math.sqrt(first * second); 
+                    result = Math.sqrt(first * second);
                     break;
             }
 
-            document.getElementById("radio_result").innerHTML = `Computed ${operation} with values ${first} and ${second} with result ${result}`;
+            document.getElementById("radio_result").innerHTML = `Computed ${operation} with values ${first} and ${second} and result ${result}`;
         }
     </script>
 </body>
+
 </html>
