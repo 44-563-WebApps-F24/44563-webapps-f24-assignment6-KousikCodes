@@ -49,9 +49,9 @@
             attempts++;
             if (guessedColor.toLowerCase() !== secretColor.toLowerCase()) {
                 wrong++;
-                $('#errorModal').modal('show'); // Show error modal
+                $('#errorModal').modal('show');  
             } else {
-                $('#successModal').modal('show'); // Show success modal
+                $('#successModal').modal('show'); 
             }
 
             document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong: ${wrong}`;
