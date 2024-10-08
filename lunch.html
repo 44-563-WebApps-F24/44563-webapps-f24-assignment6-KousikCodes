@@ -1,35 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Lunch page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch Page</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
 
-    <h2>Kousik Kuchipudi orders a lunch</h2>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Kousik Kuchipudi orders a lunch</h2>
 
-    <form>
-        <label><input type="checkbox" id="drink" value="drink"> Drink</label><br>
-        <label><input type="checkbox" id="side" value="side"> Side</label><br>
-        <label><input type="checkbox" id="in" value="in"> Eat in</label><br>
+        <form class="mb-4">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="drink" value="drink">
+                <label class="form-check-label" for="drink">Drink</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="side" value="side">
+                <label class="form-check-label" for="side">Side</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="in" value="in">
+                <label class="form-check-label" for="in">Eat in</label>
+            </div>
 
-        <input type="button" onclick="startLunch()" value="Start a lunch order">
-    </form>
+            <button type="button" class="btn btn-primary btn-block mt-3" onclick="startLunch()">Start a lunch order</button>
+        </form>
 
-    <p id="lunch_result">Your lunch details will be displayed here</p>
+        <p id="lunch_result" class="text-center font-weight-bold">Your lunch details will be displayed here</p>
 
-    <form>
-        <label for="property_name">Enter property:</label>
-        <input type="text" id="property_name" value="entree"><br>
+        <form class="mb-4">
+            <div class="form-group">
+                <label for="property_name">Enter property:</label>
+                <input type="text" class="form-control" id="property_name" value="entree">
+            </div>
 
-        <label for="property_value">Set it to:</label>
-        <input type="text" id="property_value"><br>
+            <div class="form-group">
+                <label for="property_value">Set it to:</label>
+                <input type="text" class="form-control" id="property_value">
+            </div>
 
-        <input type="button" onclick="updateLunch()" value="Update the lunch">
-    </form>
+            <button type="button" class="btn btn-success btn-block" onclick="updateLunch()">Update the lunch</button>
+        </form>
 
-    <p id="updated_lunch_result">Your updated lunch details will be displayed here</p>
+        <p id="updated_lunch_result" class="text-center font-weight-bold">Your updated lunch details will be displayed here</p>
+    </div>
 
     <script>
         let my_lunch = {};
@@ -57,7 +78,6 @@
                 JSON.stringify(my_lunch, null, 2).replace(/\n/g, '<br>');
         }
     </script>
-
 </body>
 
 </html>
